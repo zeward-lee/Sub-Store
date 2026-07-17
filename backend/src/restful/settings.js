@@ -193,6 +193,7 @@ async function updateSettings(req, res) {
 
 export async function updateAvatar() {
     const settings = $.read(SETTINGS_KEY);
+    if (!settings) return;
     const {
         githubUser: username,
         syncPlatform,
@@ -259,6 +260,7 @@ export async function updateAvatar() {
 export async function updateArtifactStore() {
     $.log('Updating artifact store');
     const settings = $.read(SETTINGS_KEY);
+    if (!settings) return;
     const { gistToken, syncPlatform } = settings;
     if (gistToken) {
         const manager = new Gist({
